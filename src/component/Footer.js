@@ -1,13 +1,24 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
-    return (
-        <div>
-            <div className="text-center p-4 footer" style={{backgroundColor: '#fafafa'}}>
-                © 2022 Copyright: <a className="text-reset fw-bold" target="_blank" rel="noreferrer" href="#">MERN STACK APP</a>    
-            </div>
-        </div>
-    )
-}
+  return (
+    <div>
+      <div
+        className="text-center p-4 footer"
+        style={{ backgroundColor: "#fafafa" }}
+      >
+        © 2023 Copyright:{" "}
+        <a
+          className="text-reset fw-bold"
+          target="_blank"
+          rel="noreferrer"
+          href="#"
+        >
+          SAFE GUARD WEB
+        </a>
+      </div>
+    </div>
+  );
+};
 
-export default Footer
+export default Footer;

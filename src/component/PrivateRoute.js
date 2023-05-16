@@ -1,14 +1,22 @@
-import React from 'react';
-import {Route, Redirect} from 'react-router-dom'
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
-const PrivateRoute = ({...rest}) => {
-    const auth = JSON.parse(localStorage.getItem('token'));
-    if (auth){
-        if (auth.token){
-          return <Route {...rest}/>
-        }
+export const PrivateRoute = ({ ...rest }) => {
+  const auth = JSON.parse(localStorage.getItem("token"));
+  if (auth) {
+    if (auth.token) {
+      return <Route {...rest} />;
     }
-  return <Redirect to="/signin"/>
+  }
+  return <Redirect to="/signin" />;
 };
 
-export default PrivateRoute;
+export const AdminAuthRoute = ({ ...rest }) => {
+  const userRole = localStorage.getItem("userRole");
+  if (userRole) {
+    if (userRole == 1) {
+      return <Route {...rest} />;
+    }
+  }
+  return <Redirect to="/unAuthorized" />;
+};

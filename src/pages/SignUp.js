@@ -3,8 +3,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
+import { Card } from "@material-ui/core";
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -32,6 +33,11 @@ const SignUp = () => {
       if (data.success === true) {
         setValues({ name: "", email: "", password: "" });
         toast.success("Sign up successfully, please Login!");
+        if (typeof window !== "undefined") {
+          setTimeout(() => {
+            history.push("/signin");
+          }, 2000);
+        }
       }
     } catch (err) {
       console.log(err.response.data.error);
@@ -43,55 +49,59 @@ const SignUp = () => {
     <div>
       <Header />
       <div className="container custom_className pt-5">
-        <h2 className="signup_title text-center">SIGN UP</h2>
-        <form className=" col-sm-6 offset-3 pt-5 signup_form">
-          <div className="form-outline mb-4">
-            <input
-              onChange={handleChange("name")}
-              type="text"
-              id="form4Example1"
-              className="form-control"
-              value={name}
-            />
-            <label className="form-label" htmlFor="form4Example1">
-              Name
-            </label>
-          </div>
+        <Card style={{ margin: 42, width: "600px", marginLeft: 250 }}>
+          <h2 className="signup_title text-center" style={{ marginTop: 20 }}>
+            SIGN UP
+          </h2>
+          <form className=" col-sm-6 offset-3 pt-5 signup_form">
+            <div className="form-outline mb-4">
+              <input
+                onChange={handleChange("name")}
+                type="text"
+                id="form4Example1"
+                className="form-control"
+                value={name}
+              />
+              <label className="form-label" htmlFor="form4Example1">
+                Name
+              </label>
+            </div>
 
-          <div className="form-outline mb-4">
-            <input
-              onChange={handleChange("email")}
-              type="email"
-              id="form4Example2"
-              className="form-control"
-              value={email}
-            />
-            <label className="form-label" htmlFor="form4Example2">
-              Email{" "}
-            </label>
-          </div>
+            <div className="form-outline mb-4">
+              <input
+                onChange={handleChange("email")}
+                type="email"
+                id="form4Example2"
+                className="form-control"
+                value={email}
+              />
+              <label className="form-label" htmlFor="form4Example2">
+                Email{" "}
+              </label>
+            </div>
 
-          <div className="form-outline mb-4">
-            <input
-              onChange={handleChange("password")}
-              type="password"
-              id="form4Example3"
-              className="form-control"
-              value={password}
-            />
-            <label className="form-label" htmlFor="form4Example3">
-              Password
-            </label>
-          </div>
+            <div className="form-outline mb-4">
+              <input
+                onChange={handleChange("password")}
+                type="password"
+                id="form4Example3"
+                className="form-control"
+                value={password}
+              />
+              <label className="form-label" htmlFor="form4Example3">
+                Password
+              </label>
+            </div>
 
-          <button
-            onClick={handleSubmit}
-            type="submit"
-            className="btn btn-primary btn-block mb-4"
-          >
-            Register
-          </button>
-        </form>
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="btn btn-primary btn-block mb-4"
+            >
+              Register
+            </button>
+          </form>
+        </Card>
       </div>
       <Footer />
     </div>
